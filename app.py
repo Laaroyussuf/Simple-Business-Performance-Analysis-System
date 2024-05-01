@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Establish connection to MySQL database
-conn = pymysql.connect(host='localhost', user='root', passwd='olamilekan1499', db='salesdatabase')
+conn = pymysql.connect(host='localhost', user='root', passwd='passwd', db='salesdatabase')
 cursor = conn.cursor()
 
 
