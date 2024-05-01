@@ -33,7 +33,6 @@ def insert_sale(product_id, quantity, price):
 # Function to generate and insert sales data
 def generate_and_insert_sales(num_sales):
     product_ids = get_product_ids()
-    # product_prices = {1: 19.99, 2: 29.99, 3: 39.99}  # Corresponding prices
     for _ in range(num_sales):
         product_id = random.choice(product_ids)
         quantity = random.randint(1, 10)
@@ -111,15 +110,19 @@ st.sidebar.title("Select option")
 generate_data = st.sidebar.button("Generate Data")
 delete_data = st.sidebar.button("Delete Data")
 
+# Condition for generating data
 if generate_data:
     generate_and_insert_sales(200)
 
+# Condition for deleting the previous entries
 if delete_data:
     cursor.execute("DELETE FROM Sales")
     conn.commit()
     st.success("Sales data deleted successfully!")
 
 st.title('Click on any options below')
+
+# Option to see the summary of sales
 if st.button('View Summary of sales'):
     query_summary = """ SELECT ProductID, SUM(Quantity) as TotalQuantity, SUM(TotalSale) as TotalSales
                 FROM Sales
@@ -133,6 +136,7 @@ if st.button('View Summary of sales'):
     st.title("Summary of Sales")
     st.table(df)
 
+# Option to visualize the analysis
 if st.button('Visualize the data'):
     st.title("Sales Data Analysis")
 
